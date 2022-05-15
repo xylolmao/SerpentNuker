@@ -139,7 +139,7 @@ async def SerpentMenu():
     elif choice == "4":
         os.system(f"cls & mode 80, 20 & title Logged In: {mytag} ~ DMing Friends")
         msg = input("Message: ")
-        [threading.Thread(target=Serpent.SerpentMassDM, args=(dm,msg,)).start() for dm in requests.get("https://discord.com/api/v9/users/@me/channels", headers=headers).json()]
+        [threading.Thread(target=Serpent.SerpentMassDM, args=(dm,msg,)).start() for dm in requests.get("https://discord.com/api/v9/users/@me/channels", headers=headers).json() if len(dm['recipients']) <= 1]
         time.sleep(2)
         await SerpentMenu()
     elif choice == "5":
